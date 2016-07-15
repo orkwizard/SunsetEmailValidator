@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EmailValidateService WSDL service -->
+
+  <service name="EmailValidate" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://routines.validation.com.sunset"/>
+      <parameter name="wsdlServiceElement" value="EmailValidateService"/>
+      <parameter name="schemaQualified" value="http://routines.validation.com.sunset"/>
+      <parameter name="wsdlServicePort" value="EmailValidate"/>
+      <parameter name="className" value="sunset.com.validation.routines.EmailValidate"/>
+      <parameter name="wsdlPortType" value="EmailValidate"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://routines.validation.com.sunset" xmlns:retNS="http://routines.validation.com.sunset" xmlns:rtns="http://routines.validation.com.sunset" name="isValidEmail" qname="operNS:isValidEmail" returnQName="retNS:isValidEmailReturn" returnType="rtns:HippoResponse" soapAction="">
+        <parameter xmlns:pns="http://routines.validation.com.sunset" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="isValidEmail"/>
+
+      <typeMapping xmlns:ns="http://routines.validation.com.sunset" qname="ns:HippoResponse" type="java:sunset.com.validation.routines.HippoResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

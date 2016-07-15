@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://routines.validation.com.sunset" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://routines.validation.com.sunset" xmlns:intf="http://routines.validation.com.sunset" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://routines.validation.com.sunset" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="isValidEmail">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isValidEmailResponse">
+    <complexType>
+     <sequence>
+      <element name="isValidEmailReturn" type="impl:HippoResponse"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="HippoResponse">
+    <sequence>
+     <element name="disposable" type="xsd:boolean"/>
+     <element name="domain" nillable="true" type="xsd:string"/>
+     <element name="duration" type="xsd:int"/>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="free" type="xsd:boolean"/>
+     <element name="mailServerLocation" nillable="true" type="xsd:string"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+     <element name="result" nillable="true" type="xsd:string"/>
+     <element name="role" type="xsd:boolean"/>
+     <element name="user" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="isValidEmailResponse">
+
+      <wsdl:part element="impl:isValidEmailResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="isValidEmailRequest">
+
+      <wsdl:part element="impl:isValidEmail" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EmailValidate">
+
+      <wsdl:operation name="isValidEmail">
+
+         <wsdl:input message="impl:isValidEmailRequest" name="isValidEmailRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:isValidEmailResponse" name="isValidEmailResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EmailValidateSoapBinding" type="impl:EmailValidate">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="isValidEmail">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="isValidEmailRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="isValidEmailResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EmailValidateService">
+
+      <wsdl:port binding="impl:EmailValidateSoapBinding" name="EmailValidate">
+
+         <wsdlsoap:address location="http://localhost:8080/EmailValidator/services/EmailValidate"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
